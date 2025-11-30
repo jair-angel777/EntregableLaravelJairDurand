@@ -1,21 +1,41 @@
-<?php
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="{{ asset('css/EstilosPokedes.css') }}">
+</head>
+<body>
 
-echo "<h2>LISTA DE POKEMONES : <br> </h2>";
-echo "<table border='10' >";
+<div class="pokedex-frame">
 
-echo "<tr>";
-echo "<td> # </td>";
-echo "<td> POKEMON </td>";
-echo "<td> Imagenes Oficiales </td>";
-echo "</tr>";
+    <div class="led"></div>
 
-foreach ($Todoslospokemones as $po) {
-    echo "<tr>";
-    echo "<td>". $po['id']. "</td>";
-    echo "<td>" . $po['name'] . "</td>";
-    echo "<td> <img src='" . $po['image'] . "' style='width: 100px;'> </td>"; 
-    echo "</tr>";
-};
+    <div class="screen">
+        <h1>Pokédex GBA</h1>
 
-echo "</table>";
-?>
+        <div class="pokedex-container">
+
+            @foreach ($Todoslospokemones as $poke)
+                <div class="pokemon-card">
+                    <div class="pokemon-id">#{{ $poke['id'] }}</div>
+
+                    <img src="{{ $poke['image_default'] }}" class="pokemon-img">
+
+                    <div class="pokemon-name">{{ $poke['name'] }}</div>
+
+                    @if ($poke['image_shiny'])
+                        <div class="shiny-label">Versión Shiny</div>
+                        <img src="{{ $poke['image_shiny'] }}" class="pokemon-img-shiny">
+                    @endif
+                </div>
+            @endforeach
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

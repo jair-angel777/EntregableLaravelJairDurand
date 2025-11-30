@@ -30,7 +30,8 @@ class PokeController extends Controller
             $Todoslospokemones[] = [
                 'id'    => $pd['id'],
                 'name'  => ucfirst($pd['name']),
-                'image' => $pd['sprites']['other']['official-artwork']['front_default'] ?? null,
+                'image_default' => $pd['sprites']['other']['official-artwork']['front_default'] ?? null,
+                'image_shiny'   => $pd['sprites']['other']['official-artwork']['front_shiny'] ?? null,
             ];
         }
 
