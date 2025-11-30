@@ -12,13 +12,13 @@
     <div class="led"></div>
 
     <div class="screen">
-        <h1>Pokédex GBA</h1>
+        <h1>Pokédex GLOBAL</h1>
 
-        <div class="pokedex-container">
+        <div class="pokedex-container"> 
 
-            @foreach ($Todoslospokemones as $poke)
+            @foreach ($pokemonsPaginados as $poke)
                 <div class="pokemon-card">
-                    <div class="pokemon-id">#{{ $poke['id'] }}</div>
+                    <div class="pokemon-id">Nº{{ $poke['id'] }}</div>
 
                     <img src="{{ $poke['image_default'] }}" class="pokemon-img">
 
@@ -33,6 +33,21 @@
 
         </div>
 
+        <div class="pagination-arrows">
+           @if ($pokemonsPaginados->onFirstPage())
+             <span class="arrow disabled">‹</span>
+           @else
+              <a href="{{ $pokemonsPaginados->previousPageUrl() }}" class="arrow">‹</a>
+           @endif
+
+           @if ($pokemonsPaginados->hasMorePages())
+               <a href="{{ $pokemonsPaginados->nextPageUrl() }}" class="arrow">›</a>
+           @else
+              <span class="arrow disabled">›</span>
+           @endif
+         </div>
+
+        
     </div>
 
 </div>
